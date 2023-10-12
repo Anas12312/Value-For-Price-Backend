@@ -1,6 +1,7 @@
 const pool = require("../../DB/Postgres")
 
-//GET ALL (Search)
+//GET BY OFFERS_ID
+
 
 module.exports = {
     

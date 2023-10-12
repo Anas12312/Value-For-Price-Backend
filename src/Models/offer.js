@@ -6,8 +6,6 @@ const pool = require("../../DB/Postgres")
 
 //GET ALL BY REST ID
 
-//GET BY ID
-
 module.exports = {
     
 }

@@ -25,6 +25,7 @@ const getByResturantId = async (resturantId, start, count) => {
     return rows;
 }
 
+
 module.exports = {
     getAll,
     getByTagId,

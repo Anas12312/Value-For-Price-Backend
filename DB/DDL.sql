@@ -8,9 +8,11 @@ CREATE TABLE tags (id SERIAL PRIMARY KEY,
 
 CREATE TABLE offers(id SERIAL PRIMARY KEY, 
                     name VARCHAR(50), 
+                    restaurantId INT,
                     description VARCHAR(255),
                     image_URL VARCHAR(255),
-                    price float);
+                    price float,
+                    FOREIGN KEY(restaurantId) REFERENCES restaurants(id));
 
 CREATE TABLE offers_tags (id SERIAL PRIMARY KEY,
                           offerId INT,

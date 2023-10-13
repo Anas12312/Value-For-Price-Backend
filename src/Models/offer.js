@@ -15,9 +15,11 @@ const getAll = async (search, start, count) => {
 //GET ALL BY TAG ID
 const getByTagId = async (tagId, start, count) => {
     const offset = (start - 1) * count;
-    const { rows } = await pool.query("SELECT * FROM offers WHERE tagId = $1 OFFSET $2 LIMIT $3", [tagId, offset, count])
+    const { rows } = await pool.query("SELECT o.* FROM offers o JOIN offers_tags ot ON o.id = ot.offerid JOIN tags t ON ot.tagid = t.id WHERE t.id = $1 OFFSET $2 LIMIT $3", [tagId, offset, count])
     return rows;
 }
+
+
 //GET ALL BY REST ID
 const getByResturantId = async (resturantId, start, count) => {
     const offset = (start - 1) * count;

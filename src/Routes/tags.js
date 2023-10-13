@@ -15,7 +15,7 @@ router.get('/tags', async (req, res) => {
 
         const tags = await Tag.getAll(search, start, count);
         
-        return res.status(400).send({tags});
+        return res.status(200).send({tags});
     } catch (e) {
         console.log(e);
         return res.status(500).send({error: e.message});

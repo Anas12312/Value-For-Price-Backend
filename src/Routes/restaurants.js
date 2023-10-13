@@ -14,7 +14,7 @@ router.get('/restaurants', async (req, res) => {
 
         const restaurant = await Restaurant.getAll(search, start, count);
         
-        return res.status(400).send({restaurant});
+        return res.status(200).send({restaurant});
     } catch (e) {
         console.log(e);
         return res.status(500).send({error: e.message});

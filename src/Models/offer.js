@@ -4,7 +4,7 @@ const pool = require("../../DB/Postgres")
 const getAll = async (search, start, count) => {
     const offset = (start - 1) * count;
     if(search) {
-        const { rows } = await pool.query("SELECT * FROM offers WHERE LOWER(name) LIKE $1 OR LOWER(description) LIKE $1 SKIP $2 LIMIT $3", [search, offset, count])
+        const { rows } = await pool.query("SELECT * FROM offers WHERE LOWER(name) LIKE $1 OR LOWER(description) LIKE $1 OFFSET $2 LIMIT $3", [search, offset, count])
         return rows;
     }
     else {

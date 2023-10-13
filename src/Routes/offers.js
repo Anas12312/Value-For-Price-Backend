@@ -3,25 +3,29 @@ const Offer = require("../Models/offer")
 const router = new express.Router()
 
 // Get All
-router.get('/offers', async (req,res) => {
+router.post('/offers', async (req,res) => {
     try {
         const start = req.body.start
         const count = req.body.count
-        const search = req.body.search.toLowerCase().trim()
-
+        const search = req.body.search?.toLowerCase().trim()
         if(!start || !count) {
-            return res.status(400).send("start and count are required")
+            return res.status(401).send({
+                message:"start and count are required"
+            })
         }
         const offers = await Offer.getAll(search, start, count)
-        return res.send(offers)
+        return res.send(offers.concat(offers))
 
     }catch(e) {
-        res.status(500).send(e.message)
+        console.log(e.message)
+        res.status(500).send({
+            message: e.message
+        })
     }
 })
 
 // Get By Tag ID
-router.get('/offers/tag/:tagId', async (req, res) => {
+router.post('/offers/tag/:tagId', async (req, res) => {
     try {
         const start = req.body.start
         const count = req.body.count
@@ -39,7 +43,7 @@ router.get('/offers/tag/:tagId', async (req, res) => {
 })
 
 // Get By Rest ID
-router.get('/offers/rest/:restaurantId', async (req, res) => {
+router.post('/offers/rest/:restaurantId', async (req, res) => {
     try {
         const start = req.body.start
         const count = req.body.count
